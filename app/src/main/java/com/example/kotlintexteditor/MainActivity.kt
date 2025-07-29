@@ -4,13 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.material3.TextFieldDefaults.outlinedTextFieldColors
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
 import com.example.kotlintexteditor.ui.theme.KotlinTextEditorTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,18 +21,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            KotlinTextEditorTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+            MaterialTheme {
+                TextEditorApp()
             }
         }
     }
 }
 
+@Suppress("DEPRECATION")
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TextEditorApp() {
     var code by remember { mutableStateOf("") }
@@ -63,10 +63,14 @@ fun TextEditorApp() {
             modifier = Modifier.weight(1f).fillMaxWidth(),
             textStyle = TextStyle(color = Color.White),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                backgroundColor = Color.DarkGray,
+                containerColor = Color.DarkGray,       // background
+                focusedTextColor = Color.White,        // text color when focused
+                unfocusedTextColor = Color.White,      // text color when unfocused
+                cursorColor = Color.White,
                 focusedBorderColor = Color.LightGray,
                 unfocusedBorderColor = Color.Gray,
-                textColor = Color.White
+                focusedLabelColor = Color.White,
+                unfocusedLabelColor = Color.White
             ),
             placeholder = { Text("Write your Kotlin code here...") },
             maxLines = Int.MAX_VALUE,
