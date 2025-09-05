@@ -68,14 +68,14 @@ object SyntaxColors {
     val warning = Color(0xFFFFA500)          // Orange for warnings
 }
 
-// ADVANCED: Enhanced history state with cursor position tracking
+// History state with cursor position tracking
 data class EditorState(
     val text: String,
     val selection: TextRange,
     val timestamp: Long = System.currentTimeMillis()
 )
 
-// ADVANCED: History manager with intelligent change detection
+// History manager with intelligent change detection
 class AdvancedHistoryManager {
     private var undoStack = mutableListOf<EditorState>()
     private var redoStack = mutableListOf<EditorState>()
@@ -112,7 +112,7 @@ class AdvancedHistoryManager {
         }
     }
 
-    // ADVANCED: Add state with intelligent merging
+    // Add state with intelligent merging
     fun addState(newState: EditorState, forceAdd: Boolean = false) {
         val shouldAdd = forceAdd || isSignificantChange(lastSavedState, newState)
 
@@ -130,12 +130,12 @@ class AdvancedHistoryManager {
 
             lastSavedState = newState
         } else {
-            // Just update the current state without adding to history
+            // Update the current state without adding to history
             lastSavedState = newState
         }
     }
 
-    // ADVANCED: Undo with cursor position restoration
+    // Undo with cursor position restoration
     fun undo(): EditorState? {
         if (undoStack.isEmpty()) return null
 
@@ -149,7 +149,7 @@ class AdvancedHistoryManager {
         return previousState
     }
 
-    // ADVANCED: Redo with cursor position restoration
+    // Redo with cursor position restoration
     fun redo(): EditorState? {
         if (redoStack.isEmpty()) return null
 
@@ -164,20 +164,20 @@ class AdvancedHistoryManager {
     }
 
 
-    // ADVANCED: Clear all history
+    // Clear all history
     fun clear() {
         undoStack.clear()
         redoStack.clear()
         lastSavedState = null
     }
 
-    // ADVANCED: Force save current state (for major operations)
+    // Force save current state (for major operations)
     fun forceSaveState(state: EditorState) {
         addState(state, forceAdd = true)
     }
 }
 
-// XML parser for language keywords
+// XML parser for language keywords from xml/language_keywords.xml
 class LanguageKeywordsParser(private val context: Context) {
 
     fun parseKeywordsFromXml(): Map<String, Set<String>> {
@@ -223,6 +223,7 @@ class LanguageKeywordsParser(private val context: Context) {
     }
 }
 
+//Parse Syntax rules for different scenarios
 class SyntaxRuleParser(private val context: Context) {
 
     data class SyntaxRule(
@@ -299,7 +300,7 @@ class SyntaxRuleParser(private val context: Context) {
             }
             parser.close()
         } catch (e: Exception) {
-            // Fallback to hardcoded rules if XML parsing fails
+            // Fallback to hardcoded minimal rules in case of any error
             return getDefaultSyntaxRules()
         }
 
@@ -323,7 +324,7 @@ class SyntaxRuleParser(private val context: Context) {
     }
 }
 
-// Advanced Syntax Checker with XML-based rules and context analysis
+// Syntax Checker with XML-based rules and context analysis
 class AdvancedSyntaxChecker(context: Context) {
 
     data class SyntaxError(
@@ -393,11 +394,11 @@ class AdvancedSyntaxChecker(context: Context) {
                 }
             }
 
-            // Advanced context-based checks
+            // Context-based checks
             errors.addAll(performContextualAnalysis(line, lineNumber, codeContext, language))
         }
 
-        // 🔥 Whole-file analyzers (multi-line aware)
+        // Whole-file analyzers (multi-line aware in Bracket and String closing checking)
         errors.addAll(analyzeBrackets(code))
         errors.addAll(analyzeStrings(code))
         errors.addAll(analyzeMultiLineStructures(code, language))
@@ -516,7 +517,7 @@ class AdvancedSyntaxChecker(context: Context) {
         return errors
     }
 
-    // 🔥 Multi-line bracket analysis
+    // Multi-line bracket analysis
     private fun analyzeBrackets(code: String): List<SyntaxError> {
         val errors = mutableListOf<SyntaxError>()
         val stack = mutableListOf<Triple<Char, Int, Int>>() // char, line, col
@@ -925,6 +926,7 @@ class EnhancedSyntaxHighlighter(private val context: Context) {
     }
 }
 
+//Composable for adding syntax highlighting
 @Composable
 fun AdvancedSyntaxHighlightedTextField(
     value: TextFieldValue,
@@ -1002,6 +1004,7 @@ fun AdvancedSyntaxHighlightedTextField(
     }
 }
 
+//Composable for List down existing files
 @Composable
 fun FileListItem(file: File, onClick: () -> Unit) {
     val icon = if (file.isDirectory) Icons.Default.ExitToApp else Icons.Default.List
@@ -1041,6 +1044,7 @@ fun FileListItem(file: File, onClick: () -> Unit) {
     }
 }
 
+//Composable for quick insert symbol buttons
 @Composable
 fun SymbolButton(
     char: String,
@@ -1071,6 +1075,7 @@ fun SymbolButton(
     }
 }
 
+//Composable for showing syntax errors
 @Composable
 fun SyntaxErrorPanel(
     errors: List<AdvancedSyntaxChecker.SyntaxError>,
@@ -1099,6 +1104,7 @@ fun SyntaxErrorPanel(
     }
 }
 
+//Composable for showing different type of syntax error cards
 @Composable
 fun SyntaxErrorItem(
     error: AdvancedSyntaxChecker.SyntaxError,
@@ -1147,6 +1153,7 @@ fun SyntaxErrorItem(
     }
 }
 
+//Composable for assembling all the features
 @Composable
 fun TextEditorApp() {
     var codeFieldValue by remember { mutableStateOf(TextFieldValue("")) }
