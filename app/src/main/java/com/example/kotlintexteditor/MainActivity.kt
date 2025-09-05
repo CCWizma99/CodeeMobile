@@ -1885,7 +1885,7 @@ fun TextEditorApp() {
                                 }
                             }
                         ) {
-                            Text("Save Direct")
+                            Text("Save")
                         }
                     }
                 },
@@ -2083,7 +2083,7 @@ fun TextEditorApp() {
                                 containerColor = Color.Black,
                                 contentColor = Color.White
                             ),
-                            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)
+                            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp)
                         ) {
                             Text("Replace All")
                         }
