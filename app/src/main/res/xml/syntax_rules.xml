@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<syntax_rules>
+    <language name="kotlin">
+        <rule type="function_syntax" message="Function missing parentheses" severity="error">
+            <pattern><![CDATA[fun\s+\w+\s*\{]]></pattern>
+        </rule>
+        <rule type="missing_semicolon" message="Consider adding semicolon" severity="warning">
+            <pattern><![CDATA[println\([^)]*\)\s*[^;}]\s*$]]></pattern>
+        </rule>
+        <rule type="class_brace" message="Class declaration missing opening brace" severity="error">
+            <pattern><![CDATA[class\s+\w+[^{]*$]]></pattern>
+        </rule>
+        <rule type="if_missing_condition" message="If statement missing condition" severity="error">
+            <pattern><![CDATA[if\s*\(\s*\)]]></pattern>
+        </rule>
+        <rule type="for_missing_body" message="For loop missing body" severity="warning">
+            <pattern><![CDATA[for\s*\([^)]*\)\s*$]]></pattern>
+        </rule>
+        <rule type="val_without_init" message="Val declaration without initialization" severity="warning">
+            <pattern><![CDATA[val\s+\w+\s*$]]></pattern>
+        </rule>
+        <rule type="unclosed_char" message="Unclosed character literal" severity="error">
+            <pattern><![CDATA['[^']*$]]></pattern>
+        </rule>
+    </language>
+
+    <language name="java">
+        <rule type="class_public" message="Class declaration missing opening brace" severity="error">
+            <pattern><![CDATA[public\s+class\s+\w+[^{]*$]]></pattern>
+        </rule>
+        <rule type="method_semicolon" message="Missing semicolon" severity="error">
+            <pattern><![CDATA[System\.out\.println\([^)]*\)\s*[^;}]\s*$]]></pattern>
+        </rule>
+        <rule type="method_declaration" message="Method missing opening brace" severity="error">
+            <pattern><![CDATA[public\s+static\s+void\s+\w+\([^)]*\)\s*[^{]\s*$]]></pattern>
+        </rule>
+        <rule type="import_syntax" message="Import missing semicolon" severity="error">
+            <pattern><![CDATA[import\s+[^;]+[^;]\s*$]]></pattern>
+        </rule>
+        <rule type="variable_declaration" message="Variable declaration missing semicolon" severity="error">
+            <pattern><![CDATA[(int|String|double|float)\s+\w+\s*=[^;]*[^;]\s*$]]></pattern>
+        </rule>
+        <rule type="main_method" message="Main method missing opening brace" severity="error">
+            <pattern><![CDATA[public\s+static\s+void\s+main\([^)]*\)\s*[^{]\s*$]]></pattern>
+        </rule>
+    </language>
+
+    <language name="python">
+        <rule type="function_colon" message="Function definition missing colon" severity="error">
+            <pattern><![CDATA[def\s+\w+\([^)]*\)\s*[^:]\s*$]]></pattern>
+        </rule>
+        <rule type="if_colon" message="If statement missing colon" severity="error">
+            <pattern><![CDATA[if\s+.+[^:]\s*$]]></pattern>
+        </rule>
+        <rule type="class_colon" message="Class definition missing colon" severity="error">
+            <pattern><![CDATA[class\s+\w+.*[^:]\s*$]]></pattern>
+        </rule>
+        <rule type="for_colon" message="For loop missing colon" severity="error">
+            <pattern><![CDATA[for\s+\w+\s+in\s+.+[^:]\s*$]]></pattern>
+        </rule>
+        <rule type="while_colon" message="While loop missing colon" severity="error">
+            <pattern><![CDATA[while\s+.+[^:]\s*$]]></pattern>
+        </rule>
+        <rule type="indentation_warning" message="Check indentation consistency" severity="warning">
+            <pattern><![CDATA[^[ \t]*(def|class|if|for|while|try|except|finally|with)]]></pattern>
+        </rule>
+    </language>
+
+    <language name="cpp">
+        <rule type="include_syntax" message="Incomplete include directive" severity="error">
+            <pattern><![CDATA[#include\s+<[^>]*$]]></pattern>
+        </rule>
+        <rule type="namespace_semicolon" message="Missing semicolon after using namespace" severity="error">
+            <pattern><![CDATA[using\s+namespace\s+\w+[^;]*[^;]\s*$]]></pattern>
+        </rule>
+        <rule type="function_declaration" message="Function declaration incomplete" severity="error">
+            <pattern><![CDATA[(int|void|double|float)\s+\w+\([^)]*\)\s*[^{;]\s*$]]></pattern>
+        </rule>
+        <rule type="main_function" message="Main function missing opening brace" severity="error">
+            <pattern><![CDATA[int\s+main\s*\([^)]*\)\s*[^{]\s*$]]></pattern>
+        </rule>
+    </language>
+
+    <language name="c">
+        <rule type="include_syntax" message="Incomplete include directive" severity="error">
+            <pattern><![CDATA[#include\s+<[^>]*$]]></pattern>
+        </rule>
+        <rule type="function_declaration" message="Function declaration incomplete" severity="error">
+            <pattern><![CDATA[(int|void|double|float|char)\s+\w+\([^)]*\)\s*[^{;]\s*$]]></pattern>
+        </rule>
+        <rule type="main_function" message="Main function missing opening brace" severity="error">
+            <pattern><![CDATA[int\s+main\s*\([^)]*\)\s*[^{]\s*$]]></pattern>
+        </rule>
+        <rule type="missing_semicolon" message="Missing semicolon after printf" severity="error">
+            <pattern><![CDATA[printf\([^)]*\)\s*[^;}]\s*$]]></pattern>
+        </rule>
+        <rule type="variable_declaration" message="Variable declaration missing semicolon" severity="error">
+            <pattern><![CDATA[(int|char|float|double)\s+\w+\s*=[^;]*[^;]\s*$]]></pattern>
+        </rule>
+        <rule type="missing_return" message="Main function should return a value" severity="warning">
+            <pattern><![CDATA[int\s+main\([^)]*\)\s*\{[^}]*\}]]></pattern>
+        </rule>
+    </language>
+</syntax_rules>
